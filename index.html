@@ -31,20 +31,20 @@
 
 
       // Notify the Android app
-      // if (window.androidAppInterface) {
-      //   // Android
-      //   window.androidAppInterface.onUnityButtonClick();
-      //   console.log("Button clicked in Unity!");
-      // } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityMessage) {
-      //   // iOS
-      //   window.webkit.messageHandlers.unityMessage.postMessage(message);
-      // }
-      if (window.AndroidApp) {
-        window.AndroidApp.onUnityButtonClick();
+      if (window.androidAppInterface) {
+        // Android
+        window.androidAppInterface.onUnityButtonClick();
         console.log("Button clicked in Unity!");
-      } else {
-        console.log("Android app interface not found.");
+      } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityMessage) {
+        // iOS
+        window.webkit.messageHandlers.unityMessage.postMessage(message);
       }
+      // if (window.AndroidApp) {
+      //   window.AndroidApp.onUnityButtonClick();
+      //   console.log("Button clicked in Unity!");
+      // } else {
+      //   console.log("Android app interface not found.");
+      // }
     }
 
 
