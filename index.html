@@ -7,22 +7,24 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script>
-      function onUnityButtonClick() {
-      console.log("Unity called JavaScript function!");
-      if (window.AndroidApp) {
+function onUnityButtonClick() {
+    console.log("Unity called JavaScript function!");
+    if (window.AndroidApp) {
         // Notify Android
         window.AndroidApp.onUnityButtonClick();
-      }
     }
 
-    function notifyUnityButtonClick(message) {
-      onsole.log("android called JavaScript function!");
-      if (unityInstance) {
+
+}
+
+function notifyUnityButtonClick(message) {
+    if (unityInstance) {
+      console.log("android called JavaScript function!");
         // Pass the message to Unity
-        onsole.log("android called JavaScript function! with unity instance");
         unityInstance.SendMessage('WebViewCalls', 'ReceiveButtonClickEvent', message);
-      }
     }
+}
+
     </script>
   </head>
   <body>
