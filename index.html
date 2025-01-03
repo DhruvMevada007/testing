@@ -29,9 +29,9 @@
 
     // Define a function that Unity can call
     function onUnityButtonClick() {
-      if (window.AndroidInterface) {
+      if (window.AndroidApp) {
         // Notify Android
-        window.AndroidInterface.onUnityButtonClick();
+        window.AndroidApp.onUnityButtonClick();
       }
     }
 
