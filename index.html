@@ -6,6 +6,27 @@
     <title>Unity Web Player | Cannon Colors</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script>
+      function onUnityButtonClick() {
+        console.log("Unity called JavaScript function!");
+        if (window.AndroidApp) {
+          // Notify Android
+          window.AndroidApp.onUnityButtonClick();
+        }
+  
+  
+      }
+  
+      function notifyUnityButtonClick() {
+        console.log("outside android called JavaScript function!");
+        if (unityInstance) {
+          console.log("android called JavaScript function!");
+          // Pass the message to Unity
+          unityInstance.SendMessage('WebViewCalls', 'ReceiveButtonClickEvent');
+        }
+      }
+  
+    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -24,25 +45,6 @@
       </div>
     </div>
     <script>
-       let unityInstance;
-       function onUnityButtonClick() {
-        console.log("Unity called JavaScript function!");
-        if (window.AndroidApp) {
-          // Notify Android
-          window.AndroidApp.onUnityButtonClick();
-        }
-  
-  
-      }
-  
-      function notifyUnityButtonClick() {
-        console.log("outside android called JavaScript function!");
-        if (unityInstance) {
-          console.log("android called JavaScript function!");
-          // Pass the message to Unity
-          unityInstance.SendMessage('WebViewCalls', 'ReceiveButtonClickEvent');
-        }
-      }
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -129,7 +131,7 @@
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
               }).then((unityInstance) => {
-                unityInstance = instance;
+                 unityInstance = instance;
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
