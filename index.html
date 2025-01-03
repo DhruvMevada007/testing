@@ -7,6 +7,26 @@
   <title>Unity Web Player | Cannon Colors</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
+  <script>
+    // JavaScript function to interact with Unity
+    function onUnityButtonClick() {
+      console.log("Unity called JavaScript function!");
+      if (window.AndroidApp) {
+        // Notify Android
+        window.AndroidApp.onUnityButtonClick();
+      }
+    }
+
+    function notifyUnityButtonClick(message) {
+      onsole.log("android called JavaScript function!");
+      if (unityInstance) {
+        // Pass the message to Unity
+        onsole.log("android called JavaScript function! with unity instance");
+        unityInstance.SendMessage('WebViewCalls', 'ReceiveButtonClickEvent', message);
+      }
+    }
+
+  </script>
 </head>
 
 <body>
@@ -26,23 +46,6 @@
     </div>
   </div>
   <script>
-
-    // Define a function that Unity can call
-    function onUnityButtonClick() {
-      if (window.AndroidApp) {
-        // Notify Android
-        window.AndroidApp.onUnityButtonClick();
-      }
-    }
-
-    // Define a function to send messages from Android to Unity
-    function notifyUnityButtonClick(message) {
-      if (unityInstance) {
-        // Pass the message to Unity
-        unityInstance.SendMessage('Main Camera', 'ReceiveButtonClickEvent', message);
-      }
-    }
-
     var canvas = document.querySelector("#unity-canvas");
 
     // Shows a temporary message banner/ribbon for a few seconds, or
@@ -76,13 +79,13 @@
       arguments: [],
       dataUrl: buildUrl + "/cannoncolors.data",
       frameworkUrl: buildUrl + "/cannoncolors.framework.js",
-      codeUrl: buildUrl + "/cannoncolors.wasm",
-      streamingAssetsUrl: "StreamingAssets",
+        codeUrl: buildUrl + "/cannoncolors.wasm",
+        streamingAssetsUrl: "StreamingAssets",
       companyName: "Rumbum",
-      productName: "Cannon Colors",
-      productVersion: "1.1.1",
-      showBanner: unityShowBanner,
-    };
+    productName: { { { JSON.stringify(PRODUCT_NAME) } } },
+    productVersion: { { { JSON.stringify(PRODUCT_VERSION) } } },
+    showBanner: unityShowBanner,
+      };
 
     // By default, Unity keeps WebGL canvas render target size matched with
     // the DOM size of the canvas element (scaled by window.devicePixelRatio)
