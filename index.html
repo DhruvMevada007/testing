@@ -24,32 +24,6 @@
       </div>
     </div>
     <script>
-      function onUnityButtonClick() {
-    console.log("Button clicked in Unity!");
-
-    // Notify the Android app
-    if (window.AndroidApp) {
-        window.AndroidApp.onUnityButtonClick();
-    } else {
-        console.log("Android app interface not found.");
-    }
-}
-
-      // function onUnityButtonClick() {
-      //     console.log("Button clicked in Unity!");
-          
-      //     // Notify the app hosting the web view
-      //     if (window.ReactNativeWebView) {
-      //         window.ReactNativeWebView.postMessage("UnityButtonClicked");
-      //     } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityButtonClicked) {
-      //         window.webkit.messageHandlers.unityButtonClicked.postMessage("UnityButtonClicked");
-      //     } else {
-      //         console.log("No host app detected.");
-      //     }
-      // }
-  </script>
-  
-    <script>
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -81,9 +55,9 @@
       var loaderUrl = buildUrl + "/cannoncolors.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/cannoncolors.data.gz",
-        frameworkUrl: buildUrl + "/cannoncolors.framework.js.gz",
-        codeUrl: buildUrl + "/cannoncolors.wasm.gz",
+        dataUrl: buildUrl + "/cannoncolors.data",
+        frameworkUrl: buildUrl + "/cannoncolors.framework.js",
+        codeUrl: buildUrl + "/cannoncolors.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Rumbum",
         productName: "Cannon Colors",
