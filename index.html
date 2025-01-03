@@ -40,11 +40,11 @@
 
     function notifyUnityButtonClick() {
       console.log("outside android called JavaScript function!");
-      if (unityInstanceGlobal) {
+      // if (unityInstanceGlobal) {
         console.log("android called JavaScript function!");
         // Pass the message to Unity
         unityInstanceGlobal.SendMessage('WebViewCalls', 'ReceiveButtonClickEvent');
-      }
+      // }
     }
     var canvas = document.querySelector("#unity-canvas");
 
