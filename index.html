@@ -28,16 +28,23 @@
     console.log("Button clicked in Unity!");
 
     // Notify the Android app
-    if (window.AndroidApp) {
-        window.AndroidApp.onUnityButtonClick();
-    } else {
-        console.log("Android app interface not found.");
+    if (window.androidAppInterface) {
+        // Android
+        window.androidAppInterface.onUnityButtonClick();
+    } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityMessage) {
+        // iOS
+        window.webkit.messageHandlers.unityMessage.postMessage(message);
     }
+    // if (window.AndroidApp) {
+    //     window.AndroidApp.onUnityButtonClick();
+    // } else {
+    //     console.log("Android app interface not found.");
+    // }
 }
 
       function notifyUnityButtonClick(message) {
           console.log("Message received from Android: " + message);
-          SendMessage("EventReceiver", "ReceiveButtonClickEvent", message);
+          SendMessage("Image", "ReceiveButtonClickEvent", message);
       }
   </script>
   
