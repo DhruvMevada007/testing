@@ -24,6 +24,24 @@
       </div>
     </div>
     <script>
+      function onUnityButtonClick() {
+    console.log("Button clicked in Unity!");
+
+    // Notify the Android app
+    if (window.AndroidApp) {
+        window.AndroidApp.onUnityButtonClick();
+    } else {
+        console.log("Android app interface not found.");
+    }
+}
+
+      function notifyUnityButtonClick(message) {
+          console.log("Message received from Android: " + message);
+          SendMessage("EventReceiver", "ReceiveButtonClickEvent", message);
+      }
+  </script>
+  
+    <script>
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
