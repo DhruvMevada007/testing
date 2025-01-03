@@ -25,29 +25,35 @@
       <div id="unity-build-title">Cannon Colors</div>
     </div>
   </div>
+
   <script>
     function onUnityButtonClick() {
 
 
       // Notify the Android app
-      if (window.androidAppInterface) {
-        // Android
-        window.androidAppInterface.onUnityButtonClick();
-        console.log("Button clicked in Unity!");
-      } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityMessage) {
-        // iOS
-        window.webkit.messageHandlers.unityMessage.postMessage(message);
-      }
-      // if (window.AndroidApp) {
-      //     window.AndroidApp.onUnityButtonClick();
-      // } else {
-      //     console.log("Android app interface not found.");
+      // if (window.androidAppInterface) {
+      //   // Android
+      //   window.androidAppInterface.onUnityButtonClick();
+      //   console.log("Button clicked in Unity!");
+      // } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.unityMessage) {
+      //   // iOS
+      //   window.webkit.messageHandlers.unityMessage.postMessage(message);
       // }
+      if (window.AndroidApp) {
+        window.AndroidApp.onUnityButtonClick();
+        console.log("Button clicked in Unity!");
+      } else {
+        console.log("Android app interface not found.");
+      }
     }
 
+
+  </script>
+
+  <script>
     function notifyUnityButtonClick(message) {
       console.log("Message received from Android: " + message);
-      SendMessage("EventReceiver", "ReceiveButtonClickEvent", message);
+      SendMessage("Main Camera", "ReceiveButtonClickEvent", message);
     }
   </script>
 
